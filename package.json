@@ -8,7 +8,9 @@
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.2",
     "@types/uuid": "^3.4.5",
+    "axios": "^0.19.0",
     "classnames": "^2.2.6",
+    "core-js": "^3.3.4",
     "lodash.throttle": "^4.1.1",
     "nav-frontend-core": "^4.0.10",
     "nav-frontend-grid": "^1.0.22",
@@ -19,6 +21,7 @@
     "nav-frontend-typografi-style": "^1.0.16",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-app-polyfill": "^1.0.4",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
     "typescript": "3.6.4",
@@ -34,7 +37,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "start:css": "less-watch-compiler --config less.json",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,14 +44,16 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      "> 0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "> 0.2%",
+      "not dead",
+      "not op_mini all",
+      "ie 11"
     ]
   }
 }
