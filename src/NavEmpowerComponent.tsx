@@ -2,8 +2,6 @@ import React, {SyntheticEvent} from "react";
 import { Hovedknapp, Fareknapp } from 'nav-frontend-knapper';
 import { Container, Row, Column } from "nav-frontend-grid";
 import isFunction from './isFunction';
-import './App.css';
-
 
 type appProps = {
     empowerServerUrl: string,
@@ -36,7 +34,7 @@ function hasChangedCallback(boundSave: Function, res: hasChangedResponse): void{
     if(res.isDirty){
         boundSave()
     } else {
-        console.log("Detecting no changes")
+        console.info("Detecting no changes")
     }
 }
 
@@ -79,7 +77,7 @@ export const NavEmpowerComponent: React.FC<appProps> = (props) => {
                     </ul>
                 </Column>
                 <Column className="nav-empower-frontend-column-frame" md={"12"}>
-                    <iframe title="Empower Editor Window" id="frame" className="empowerFrame"
+                    <iframe title="Empower Editor Window" id="empower-editor-frame" className="empowerFrame"
                              src={props.empowerServerUrl}
                              onLoad={iframeOnLoad(props.setIframeWindow)}
                     />
