@@ -5,6 +5,11 @@
   "version": "0.1.0",
   "license": "MIT",
   "private": false,
+  "homepage": "https://github.com/erlend-axelsson/navReactEmpower#readme",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/erlend-axelsson/navReactEmpower.git"
+  },
   "peerDependencies": {
     "react": "^16.10.2"
   },
