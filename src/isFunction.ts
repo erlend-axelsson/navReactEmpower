@@ -1,4 +1,4 @@
 export default function isFunction(functionToCheck: any): boolean {
-    return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+    return !!functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 };
 

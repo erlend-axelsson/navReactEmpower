@@ -3,7 +3,7 @@ import { Hovedknapp, Fareknapp } from 'nav-frontend-knapper';
 import { Container, Row, Column } from "nav-frontend-grid";
 import isFunction from './isFunction';
 
-type appProps = {
+export type appProps = {
     empowerServerUrl: string,
     setIframeWindow: Function,
     simpleCall: Function,
@@ -45,7 +45,8 @@ function save(simpleCall: Function, fnCallback: Function, includeUncommitedChang
 
 function onClickFunctionCall(fn?: Function){
     return function(e: React.MouseEvent){
-        if(fn !== undefined) { fn(); }
+        if(fn !== undefined) {
+            fn(); }
     }
 }
 
@@ -64,14 +65,14 @@ export const NavEmpowerComponent: React.FC<appProps> = (props) => {
             <Row className="nav-empower-frontend-row">
                 <Column className="nav-empower-frontend-column-buttons">
                     <ul className="nav-empower-button-list">
-                        <li><Hovedknapp onClick={hasChanged(props.simpleCall, true)} className="nav-empower-button">Mellomlagre</Hovedknapp></li>
+                        <li><Hovedknapp id="nav-empower-mellomlagre" onClick={hasChanged(props.simpleCall, true)} className="nav-empower-button">Mellomlagre</Hovedknapp></li>
                         {isFunction(props.ferdigstillFunction)
-                            ? <li><Hovedknapp onClick={onClickFunctionCall(props.ferdigstillFunction)} className="nav-empower-button">Ferdigstill</Hovedknapp></li>
+                            ? <li><Hovedknapp id="nav-empower-ferdigstill" onClick={onClickFunctionCall(props.ferdigstillFunction)} className="nav-empower-button">Ferdigstill</Hovedknapp></li>
                             : null
                         }
-                        <li><Hovedknapp onClick={onClickFunctionCall(props.refreshWindow)} className="nav-empower-button">Tilbake til sist lagrede</Hovedknapp></li>
+                        <li><Hovedknapp id="nav-empower-sistlagrede" onClick={onClickFunctionCall(props.refreshWindow)} className="nav-empower-button">Tilbake til sist lagrede</Hovedknapp></li>
                         {props.enableDelete
-                            ? <li><Fareknapp onClick={onClickFunctionCall(props.deleteDocument)} className="nav-empower-button">Kanseller dokument</Fareknapp></li>
+                            ? <li><Fareknapp id="nav-empower-kanseller" onClick={onClickFunctionCall(props.deleteDocument)} className="nav-empower-button">Kanseller dokument</Fareknapp></li>
                             : null
                         }
                     </ul>

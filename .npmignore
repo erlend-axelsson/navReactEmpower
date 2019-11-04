@@ -20,7 +20,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-/.idea
 
 npm-debug.log*
 yarn-debug.log*
@@ -86,3 +85,4 @@ typings/
 
 # next.js build output
 .next
+/.idea/

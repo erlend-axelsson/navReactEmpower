@@ -1,12 +1,12 @@
 import React,{Component} from "react";
-import * as uuid from 'uuid'
+import * as uuid from "uuid";
 import NavEmpowerComponent from "./NavEmpowerComponent";
 import isFunction from './isFunction'
-import Axios from 'axios'
+import axios from 'axios'
 
 type editorApiPathProps = {
     path: string,
-    ferdigstillFunction?: Function
+    ferdigstillFunction?: Function,
     enableDelete?: boolean
 };
 
@@ -18,15 +18,22 @@ type editorApiOptionProps = {
     showUserLogs?: string | boolean,
     documentNumber?: string | number,
     page?: string | number,
-    ferdigstillFunction?: Function
+    ferdigstillFunction?: Function,
     enableDelete?: boolean
 };
 
-type editorApiState = {
+export type editorApiState = {
     callbacks: callbackType,
     targetWindow: Window | undefined,
     targetURL: URL,
 };
+
+type callObject = {
+    uniqueIdentifier: string,
+    methodName: string,
+    args: any,
+    action: string
+}
 
 type callbackType = { [index:string] : Function }
 
@@ -64,11 +71,11 @@ export class EditorApiComponent extends Component<editorApiPathProps | editorApi
         const securityTokenURL = new URL("empower/resource/GetToken", this.state.targetURL.origin);
         const deleteDocumentURL = new URL("empower/resource/documents/" + documentID, this.state.targetURL.origin);
         try {
-            const tokenResponse = await Axios.get(securityTokenURL.href, {withCredentials: true});
+            const tokenResponse = await axios.get(securityTokenURL.href, {withCredentials: true});
 
             const tokenBody = tokenResponse.data.body;
 
-            const deleteResponse = await Axios.delete(deleteDocumentURL.href, {
+            const deleteResponse = await axios.delete(deleteDocumentURL.href, {
                 withCredentials: true,
                 headers: {"X-CSRF-TOKEN": tokenBody.csrfToken}
             });
@@ -127,7 +134,7 @@ export class EditorApiComponent extends Component<editorApiPathProps | editorApi
         }
         try { return JSON.parse(messageEvent.data); }
         catch (_) {
-            console.error(`EditorAPI is unable to parse a message received from ${messageEvent.origin} as JSON. The data was '${messageEvent.data.toString()}'`);
+            console.error(`EditorAPI is unable to parse a message received as JSON. The data was ${messageEvent}`);
             return undefined
         }
     };
@@ -175,18 +182,11 @@ export class EditorApiComponent extends Component<editorApiPathProps | editorApi
     };
 }
 
-type callObject = {
-    uniqueIdentifier: string,
-    methodName: string,
-    args: any,
-    action: string
-}
-
-
 function parseUrl(props: editorApiPathProps | editorApiOptionProps): URL{
     if((props as editorApiPathProps).path !== undefined){
         const path = (props as editorApiPathProps).path;
         const empowerUrl = new URL(path);
+        empowerUrl.searchParams.set("iframeInstance", uuid.v4());
         return empowerUrl;
     }
 
