@@ -1,14 +1,13 @@
 React component to interact with an Empower OpenText editor
 -----------------------------------------------------------
 
-##Props
-######editorApiPathProps 
+## Props
+###### editorApiPathProps
     path: string, (full path, ie. https://example.com:8080/path?query#hash)
     ferdigstillFunction?: Function, (callback for ferdigstill button)
     enableDelete?: boolean (enable delete button, delete function is untested)
 
-
-######editorApiOptionProps
+###### editorApiOptionProps
     host: string, (host ie https://example.com:8080)
     version?: string, (empower version)
     locale?: string, (locale)
@@ -19,8 +18,7 @@ React component to interact with an Empower OpenText editor
     ferdigstillFunction?: Function, (callback for ferdigstill button)
     enableDelete?: boolean (enable delete button, delete function is untested)
 
-##Install
+## Install
     npm i nav-empower-frontend
-##Usage    
+## Usage
     <NavEmpowerFrontend [editorApiPathProps OR editorApiOptionProps] />
-
