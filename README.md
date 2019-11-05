@@ -1,5 +1,5 @@
-React component to interact with an Empower OpenText editor
------------------------------------------------------------
+React component to interact with Opentext Exstream Empower editor
+-----------------------------------------------------------------
 
 ### Props
 ###### editorApiPathProps
